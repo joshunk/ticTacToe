@@ -8,7 +8,7 @@ console.log("Hello");
 // let gameBoard = { board: [1, 1, 1, 1, 1, 1, 1, 1, 1] };
 
 const gameBoard = (function () {
-	return { board: [1, 1, 1, 1, 1, 1, 1, 1, 1] };
+	return { board: ["-", "-", "-", "-", "-", "-", "-", "-", "-"] };
 })();
 
 const gameLogic = function () {
@@ -18,11 +18,74 @@ const gameLogic = function () {
 function createPlayer(playerNumber, playerToken) {
 	const playerTurn = true;
 	function scoreChecker(x) {
+		if (gameBoard.board.includes("-") === false) {
+			console.log("It's a draw!");
+			return;
+		}
 		if (
 			gameBoard.board[0] === x &&
 			gameBoard.board[1] === x &&
 			gameBoard.board[2] === x
 		) {
+			winMessage(x);
+		}
+
+		if (
+			gameBoard.board[0] === x &&
+			gameBoard.board[3] === x &&
+			gameBoard.board[6] === x
+		) {
+			winMessage(x);
+		}
+
+		if (
+			gameBoard.board[1] === x &&
+			gameBoard.board[4] === x &&
+			gameBoard.board[7] === x
+		) {
+			winMessage(x);
+		}
+
+		if (
+			gameBoard.board[2] === x &&
+			gameBoard.board[5] === x &&
+			gameBoard.board[8] === x
+		) {
+			winMessage(x);
+		}
+
+		if (
+			gameBoard.board[3] === x &&
+			gameBoard.board[4] === x &&
+			gameBoard.board[5] === x
+		) {
+			winMessage(x);
+		}
+
+		if (
+			gameBoard.board[0] === x &&
+			gameBoard.board[4] === x &&
+			gameBoard.board[8] === x
+		) {
+			winMessage(x);
+		}
+
+		if (
+			gameBoard.board[2] === x &&
+			gameBoard.board[4] === x &&
+			gameBoard.board[6] === x
+		) {
+			winMessage(x);
+		}
+
+		if (
+			gameBoard.board[6] === x &&
+			gameBoard.board[7] === x &&
+			gameBoard.board[8] === x
+		) {
+			winMessage(x);
+		}
+		function winMessage(x) {
 			if (x === "X") {
 				console.log("Player 1 wins!");
 				return;
@@ -44,7 +107,7 @@ function createPlayer(playerNumber, playerToken) {
 					console.log("Please enter a number between 0 and 8.");
 					return;
 				}
-				if (gameBoard.board[x] != 1) {
+				if (gameBoard.board[x] != "-") {
 					console.log(
 						"Please select a square that has not been played already."
 					);
@@ -80,10 +143,69 @@ function scoreChecker() {
 	}
 }
 
-//simulate a game
-player1.makePlay(0);
-player2.makePlay(3);
-player1.makePlay(1);
-player2.makePlay(5);
-player1.makePlay(2);
-//it should end here
+// //simulate a game with a win across the top row
+// player1.makePlay(0);
+// player2.makePlay(3);
+// player1.makePlay(1);
+// player2.makePlay(5);
+// player1.makePlay(2);
+
+// //simulate a game with a win across the middle row
+// player1.makePlay(3);
+// player2.makePlay(0);
+// player1.makePlay(4);
+// player2.makePlay(6);
+// player1.makePlay(5);
+
+// //simulate a game with a win across the bottom row
+// player1.makePlay(6);
+// player2.makePlay(0);
+// player1.makePlay(7);
+// player2.makePlay(2);
+// player1.makePlay(8);
+
+// //simulate a game with a win across the first column
+// player1.makePlay(0);
+// player2.makePlay(1);
+// player1.makePlay(3);
+// player2.makePlay(2);
+// player1.makePlay(6);
+
+// //simulate a game with a win across the second column
+// player1.makePlay(1);
+// player2.makePlay(0);
+// player1.makePlay(4);
+// player2.makePlay(2);
+// player1.makePlay(7);
+
+// //simulate a game with a win across the third column
+// player1.makePlay(2);
+// player2.makePlay(0);
+// player1.makePlay(5);
+// player2.makePlay(3);
+// player1.makePlay(8);
+
+// //simulate a game with a win with a diagonal slash
+// player1.makePlay(0);
+// player2.makePlay(1);
+// player1.makePlay(4);
+// player2.makePlay(3);
+// player1.makePlay(8);
+
+// //simulate a game with a win with the other diagonal slash
+// player1.makePlay(2);
+// player2.makePlay(1);
+// player1.makePlay(4);
+// player2.makePlay(3);
+// player1.makePlay(6);
+
+// //simulate a game with a draw
+// player1.makePlay(4);
+// player2.makePlay(8);
+// player1.makePlay(6);
+// player2.makePlay(2);
+// player1.makePlay(1);
+// player2.makePlay(7);
+// player1.makePlay(0);
+// player2.makePlay(3);
+// player1.makePlay(5);
